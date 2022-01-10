@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/popper.js/2.9.3/umd/popper.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.min.js"></script>
+
+    <title>南开校内搜索</title>
+    <style>
+        strong {
+            color: #c00;
+            font-weight: normal;
+        }
+
+        .webpage-text {
+            line-height: 20px;
+            font: 12px/normal Arial, Helvetica, Sans-Serif;
+            display: block;
+        }
+
+        .webpage-title {
+            line-height: 24px;
+            font: 20px/normal Arial, Sans-Serif;
+            display: line;
+        }
+
+        .webpage-url {
+            color: rgba(110, 191, 63);
+            font: 14px/normal Arial, Sans-Serif;
+        }
+
+        .snapshop-btn {
+            white-space: nowrap;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid" style="  margin-right: 10%;margin-left: 10%;">
+            <a class="navbar-brand" tabindex="-1" href="/">校内搜索</a>
+            <div class="container">
+                <form class="d-flex" action='/search' method='get' role="search">
+                    {% if user %}<input type="hidden" name="username" value="{{user}}"> {% endif %}
+                    <input name="query" class="form-control me-2 " type="search" list="hs" placeholder="请输入查询内容..." aria-label="Search">
+                    {% if history %}
+                    <datalist id="hs">
+                        {% for h in history %}
+                        <option value="{{h}}">
+                        {%endfor%}
+                    </datalist>
+                    {% endif %}
+                    <button class="btn btn-outline-primary" type="submit">Search</button>
+                </form>
+            </div>
+            <button type="button" class="btn btn-default navbar-btn" data-bs-toggle="modal" data-bs-target="#myModal">
+                Advance
+            </button>
+            {% if user %}
+
+            <div class="navbar-item">{{user}}</div>
+       
+            {% else %}
+            
+            <button type="button" class="btn btn-default navbar-btn" data-bs-toggle="modal" data-bs-target="#loginModal">
+                Login
+            </button>
+            <button type="button" class="btn btn-default navbar-btn" data-bs-toggle="modal" data-bs-target="#signupModal">
+                Signup
+            </button>
+            
+            {% endif %}
+
+        </div>
+    </nav>
+    <!-- 模态框 -->
+    <div class="modal" id="loginModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- 模态框头部 -->
+                <div class="modal-header">
+                    <h4 class="modal-title">登录</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <!-- 模态框内容 -->
+                <div class="modal-body">
+                    <form action="/login" method="get">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">用户名</span>
+                            <input name="username" type="text" class="form-control" />
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">密码</span>
+                            <input name="password" type="password" class="form-control" />
+                        </div>
+                        <button type="submit" class="btn btn-primary mb-3">
+                            登录
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 模态框 -->
+    <div class="modal" id="signupModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- 模态框头部 -->
+                <div class="modal-header">
+                    <h4 class="modal-title">注册</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <!-- 模态框内容 -->
+                <div class="modal-body">
+                    <form action="/signup" method="get">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">用户名</span>
+                            <input name="username" type="text" class="form-control" />
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">密码</span>
+                            <input name="password" type="password" class="form-control" />
+                        </div>
+                        <label class="form-label col-auto">所属学院</label>
+                        <div class="input-group mb-3">
+                            <input name="xueyuan" type="text" class="form-control" />
+                            <span class="input-group-text">学院</span>
+                        </div>
+                        <button type="submit" class="btn btn-primary mb-3">
+                            注册
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 模态框 -->
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- 模态框头部 -->
+                <div class="modal-header">
+                    <h4 class="modal-title">高级搜索</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <!-- 模态框内容 -->
+                <div class="modal-body">
+                    <form>
+                        {% if user %}<input type="hidden" name="username" value="{{user}}">{% endif %}
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">搜索</span>
+                            <input name="query" type="text" class="form-control">
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">从</span>
+                            <input name="date" type="date" class="form-control">
+                            <span class="input-group-text">开始</span>
+                        </div>
+
+                        <div class="input-group mb-2">
+                            <span class="input-group-text">站内搜索</span>
+                            <input name="url" class="form-control" list="datalistOptions"
+                                placeholder="site to search...">
+                            <datalist id="datalistOptions">
+                                <option value="https://cc.nankai.edu.cn/">
+                                <option value="https://cyber.nankai.edu.cn/">
+                                <option value="https://ai.nankai.edu.cn/">
+                            </datalist>
+                        </div>
+
+                        <div class="row align-items-start">
+                            <label class="form-label col-auto">搜索范围</label>
+                            <div class="form-check  col-auto">
+                                <input name="fields" class="form-check-input" type="checkbox" value="title"
+                                    id="flexCheck1" checked>
+                                <label class="form-check-label" for="flexCheck1">标题</label>
+                            </div>
+                            <div class="form-check  col-auto">
+                                <input name="fields" class="form-check-input" type="checkbox" value="text"
+                                    id="flexCheck2" checked>
+                                <label class="form-check-label" for="flexCheck2">正文</label>
+                            </div>
+                            <div class="form-check  col-auto">
+                                <input name="fields" class="form-check-input" type="checkbox" value="anchor"
+                                    id="flexCheck3" checked>
+                                <label class="form-check-label" for="flexCheck3">锚文本</label>
+                            </div>
+                        </div>
+
+                        <div class="row align-items-start">
+                            <label class="form-label col-auto">查询方式</label>
+                            <div class="form-check col-auto">
+                                <input class="form-check-input" type="radio" name="method" value="match" checked>
+                                <label class="form-check-label" for="flexRadioDefault1">文档查询</label>
+                            </div>
+                            <div class="form-check col-auto">
+                                <input class="form-check-input" type="radio" name="method" value="phrase">
+                                <label class="form-check-label" for="flexRadioDefault2">短语查询</label>
+                            </div>
+                            <div class="form-check col-auto">
+                                <input class="form-check-input" type="radio" name="method" value="wildcard">
+                                <label class="form-check-label" for="flexRadioDefault3"> 通配查询</label>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">从</span>
+                            <input name="from" class="form-control" type="number" min="0">
+                            <span class="input-group-text">开始,</span>
+                            <input name="size" class="form-control" type="number" min="10">
+                            <span class="input-group-text">项</span>
+                        </div>
+                        <button type="submit" class="btn btn-primary mb-3">高级搜索</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mx-auto p-5" style="width: 85%;">
+        <div class="container">
+            <ul class="list-group">
+                {% for page in pages %}
+                <li class="list-group-item list-group-item-light">
+                    <div class="webpage-title">
+                        {% autoescape off %}
+                        <a target="_blank" href="{{page['url']}}">
+                            {{''.join(page['title'])}}
+                        </a>
+                        {% endautoescape %}
+                    </div>
+                    <div>
+                        <span class="webpage-url">{{page['url']}}</span>
+                        <a target="_blank" href="{{" \snapshot?url="+page['url']+'&query='+query}}"
+                            style="font-size:12px;">快照</a>
+                    </div>
+
+                    <div class="webpage-text">{{page['date'][0:10]}}:
+                        <span>
+                            {% autoescape off %}{{''.join(page['text'])}}{% endautoescape %}
+                        </span>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>

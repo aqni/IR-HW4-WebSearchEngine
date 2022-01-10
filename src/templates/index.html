@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="UTF-8" />
+    <title>南开校内搜索</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css"
+    />
+    <script src="https://cdn.staticfile.org/popper.js/2.9.3/umd/popper.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.min.js"></script>
+    <style>
+      .row-center {
+        text-align: center;
+        margin-top: 120px;
+      }
+      .col-center {
+        display: inline-block;
+        float: none;
+        text-align: left;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="row row-center">
+        <div class="col-center">
+          <div
+            style="
+              background-color: darkseagreen;
+              padding: 28px;
+              border-radius: 8px;
+              border-width: 2px;
+              width:800px;
+            "
+          >      
+          <form action="/search" method="get" class="align-self-center mx-auto">
+            <div class="d-flex">
+              <label class="navbar-brand">校内搜索</label>
+              <div class="col-auto me-2">
+                  <input style="width:500px;" class="form-control col-auto" type="search" name="query" />
+              </div>
+              <div class="col-auto">
+                  <input  class="form-control col-auto" type="submit" value="搜索"
+              </div>
+            </div>
+          </form>
+        </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </body>
+</html>

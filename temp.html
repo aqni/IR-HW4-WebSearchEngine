@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>南开校内搜索</title>
+    <style>
+    .header-wrap{
+      top: 0px;
+      box-shadow: 0 1px 0 rgb(0 0 0 /20%);
+      background-color: #fafafa;
+      position: relative;
+      z-index:9 ;
+    }
+    .search-board{
+      margin-top: 1em;
+      margin-left: 1em;
+      margin-right: 1em;
+      margin-bottom: 1em;
+    }
+    .logo-wrap{
+      margin: auto;
+      height: 100%;
+      display: flex;
+    }
+    .logo{
+      background-image: url();
+    }
+    strong {
+        color: #c00;
+        font-weight: normal;
+    }
+    .webpage-text{
+      line-height: 20px;
+      font: 12px/normal Arial,Helvetica,Sans-Serif;
+      display: block;
+    }
+    .webpage-title{
+      line-height: 24px;
+      font: 20px/normal Arial,Sans-Serif;
+      display: line;
+    }
+    .webpage-url{
+      color: rgba(110, 191, 63);
+      font: 14px/normal Arial,Sans-Serif;
+    }
+    .snapshop-btn{
+      white-space:nowrap;
+    }
+    </style> 
+</head>
+
+<body>
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" tabindex="-1" href="/">校内搜索</a>
+        </div>
+        <div>
+          <form action ='/search' method='get' class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+              <input type="text" name="query" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-primary">提交按钮</button>
+          </form>
+          <button type="button" class="btn btn-default navbar-btn">
+            高级搜索
+          </button>
+        </div>
+    </div>
+  </nav>
+
+
+
+    <div> total:1000</div>
+    <div>
+      <ul class="list-group">
+        <li class="list-group-item list-group-item-light">
+          <div class="webpage-title">
+              <a target="_blank" href="https://www.nankai.edu.cn/">
+                  <strong>计算机</strong><strong>学院</strong><strong>主页</strong>
+              </a>
+          </div>
+          <div>
+              <span class="webpage-url">
+                  https://www.nankai.edu.cn/
+              </span>
+              <button type="button" class="btn btn-sm btn-link">
+                  快照 
+              </button>
+          </div>            
+
+          <div class="webpage-text"><span>2021-12-3 : </span><strong>计算机</strong><strong>学院</strong><strong>主页</strong> 首页导航 首 页 <strong>学院</strong>概况 <strong>学院</strong>概况 <strong>学院</strong>领导 <strong>学院</strong>党委 组织结构 学科学术分委会 学位评定分委会<strong>计算机</strong><strong>学院</strong>职称评审委员会 学科建设 学科结构 <strong>计算机</strong>科学与技术学科 师资队伍 教授/研究员 副教授/副研究员、网安<strong>学院</strong>2021-2022学年第一学期期末考试缓考、缓修说明 2021-11-26 <strong>计算机</strong>、网安<strong>学院</strong>2021-07-06 【党史学习教育】<strong>计算机</strong><strong>学院</strong>和网络空间安全<strong>学院</strong>开展党史学习教育专题培训 2021-04-27 <strong>计算机</strong><strong>学院</strong>和网络空间安全<strong>学院</strong>赴西柏坡、正定开展党史学习教育 2021-04-09 <strong>计算机</strong><strong>学院</strong>教师党支部</div></br>
+        </li>
+        <li class="list-group-item list-group-item-light">
+          <div>
+              <a target="_blank" href="https://www.nankai.edu.cn/">
+                  <strong>计算机</strong><strong>学院</strong><strong>主页</strong>
+              </a>
+          </div></br>
+          <div>2021-12-3</div> 
+          <div class="webpage-url">https://www.nankai.edu.cn/</div></br>
+          <div class="webpage-text"><strong>计算机</strong><strong>学院</strong><strong>主页</strong> 首页导航 首 页 <strong>学院</strong>概况 <strong>学院</strong>概况 <strong>学院</strong>领导 <strong>学院</strong>党委 组织结构 学科学术分委会 学位评定分委会<strong>计算机</strong><strong>学院</strong>职称评审委员会 学科建设 学科结构 <strong>计算机</strong>科学与技术学科 师资队伍 教授/研究员 副教授/副研究员、网安<strong>学院</strong>2021-2022学年第一学期期末考试缓考、缓修说明 2021-11-26 <strong>计算机</strong>、网安<strong>学院</strong>2021-07-06 【党史学习教育】<strong>计算机</strong><strong>学院</strong>和网络空间安全<strong>学院</strong>开展党史学习教育专题培训 2021-04-27 <strong>计算机</strong><strong>学院</strong>和网络空间安全<strong>学院</strong>赴西柏坡、正定开展党史学习教育 2021-04-09 <strong>计算机</strong><strong>学院</strong>教师党支部</div></br>
+        </li>
+      </ul>
+    </div>
+    <div class="container mt-3">        
+        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#myModal">
+          打开模态框
+        </button>
+    </div>
+      
+      <!-- 模态框 -->
+      <div class="modal" id="myModal">
+          <form>
+        <form>
+        <div class="modal-dialog">
+          <div class="modal-content">
+      
+            <!-- 模态框头部 -->
+            <div class="modal-header">
+              <h4 class="modal-title">模态框标题</h4>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+      
+            <!-- 模态框内容 -->
+            <div class="modal-body">
+              模态框内容..
+            </div>
+      
+            <!-- 模态框底部 -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">关闭</button>
+            </div>
+      
+          </div>
+        </div>
+      </div>
+</body>
+</html>
